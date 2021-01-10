@@ -1,0 +1,152 @@
+image::images/logo-th-rosenheim-2019.png[TH Rosenheim, 300, 500]
+
+==== Rosenheim University of Applied Sciences
+
+== Functional programming comparison JavaScript and GO
+
+===== Author: Bartosz-Krzysztof Kotelczuk
+====== Matriculation number: 868072
+[[Text]]
+== Abstract
+The idea of functional programming is used in more and more complex projects for development. However, with a free choice of programming languages that internalize structures of functional programming, a decision is very difficult. Therefore in the context of lecture concepts of the programming languages the languages Go and JavaScript are examined in view of functional development. The decisive criteria refer to the bases which make a functional development possible and the convertibility of these by the examined programming languages. The features examined, such as pure functions, higher order and first class functions, currying, immutability and typings revealed that the programming languages show few differences in the implementation of respective criteria. The main differences were found within the immutability and typings criteria. The design difference between dynamic and static typings was clearly noticeable. Regarding immutability, JavaScript provides several ways to fulfill this requirement, one application in GO completely relies on the pointer methodology to stay true to the concept.   
+
+[[numbered]]
+=== Table of Contents
+.	Introduction
+.	Functional programming
+.	Comparison Go and JavaScript
+..	Pure functions
+..	First class and higher order functions
+..	Currying
+..	Immutability
+..	Typings
+.	Discussion
+.	References
+
+[[Text]]
+== 1	Introduction
+For some time now, functional programming has been a part of a developer's everyday life. Every new programming language tries to guarantee some of the basics from the functional world. Even established languages like C# are getting change in such a way, to meet the required criteria. Since there are so many choices available, a decision witch programming language to take is getting more complex. Apart from subjective preferences and existing knowledge, criteria should be worked out that allow a comparison. Such a comparison is to be achieved within the framework of the lecture concepts of programming languages. The languages examined for the comparison are JavaScript and Go. Since the languages were not created explicitly for the functional paradigm, the comparison will be based only on basic ideas and not on architecture level.
+
+== 2	Functional programming
+The comparison criteria are to be defined at the beginning. Some of the fundamental rules of functional programming are concepts like pure functions, first class and higher order functions, currying, no data mutation, and no implicit state. The last two are the most important ones. A function should mutate means that an object should not be changed after it is created. The second one means that a state inside of a function which could influence the inserted data is not allowed [1]. 
+
+When comparing the programming languages regarding functional programming, only a few points come into question, as the concepts and methods of functional programming can be implemented with the help of these. Based on the assumption, the aspects of pure function, first class functions, higher order functions, currying, immutability, and typing are considered for the comparison.
+
+Approaches such as the avoidance of implicit states, recursion, lazy evaluation, or side effects are concepts that are based on the basic rules described in advance and thus cannot bring any significant statements into the intended comparison. Therefore, these are not seen as criteria for comparison, but their importance in functional programming should not be diminished.
+
+== 3	Comparison Go and JavaScript
+
+=== 3.1	Pure functions
+Pure function should return values based on the arguments passed in. The global state of the application should not be affected by the function. In addition, there should be no dependencies between any of the functions or some function and an application state [1]. Functions that output information to the console, append values in addition to existing arguments, listen for events, or address another interface also violate the rules of pure functions.
+
+[source, GO]
+include::examples/pure_function_GO.go[]
+
+*Figure 1: Simple pure function in GO* 
+
+[source, JavaScript]
+include::examples/pure_function_JS.js[]
+
+*Figure 2: Simple pure function in JavaScript*
+
+[source, JavaScript]
+include::examples/complex_pure_function_JS.js[]
+
+*Figure 3: GroupBy method in JavaScript as complex pure function*
+
+Figure 1 shows the correct procedure of implementing a pure function in GO. For comparison, figure 2 shows the same methodology in JavaScript. Kept simple are both examples easy to understand and clear in their logic. More complex methods as showed in figure 3 can still be represented as pure functions. Nevertheless, JavaScript keywords like “var” represent global variables [2]. As presented in the JavaScript example, they should be avoided as much as possible, as they violate the understanding of pure functions. On the other hand, GO does not offer the possibility to create global variables within a method, but the language has the function of a pointer. As Hiwarale says: “A pointer is a variable that stores the memory address data referenced by another variable. Pointers have the power to mutate data they are pointing to” [3]. Based on the definition, all necessary steps should be taken to avoid this functionality since global values can be influenced here. 
+
+=== 3.2	First-class and higher order functions
+The idea of first-class functions means, among other things, that functions can be defined as variable. Furthermore, functions should be able to be passed as arguments into other methods or return a function from another. The definition of higher order functions says that a function is only valid as a high order if it accepts one or more functions as parameters or if it returns another function as result [1].
+
+[source, JavaScript]
+include::examples/first_class_higher_order_JS.js[]
+
+*Figure 4: First class and higher order functions in JavaScript*
+
+[source, GO]
+include::examples/first_class_higher_order_GO.go[lines=5..17]
+
+*Figure 5: First class and higher order functions in GO*
+
+As shown in figures 4 and 5 the requirements for the first-class structure and higher order functions can be met by the GO and JavaScript programming language. The main difference here lies in the syntax since the results of the methods are completely the same in both languages.
+
+=== 3.3	Currying
+Currying is a widely used method in functional programming. The created structure enables the transfer of methods and arguments, one after the other. At its core, it is a series of high order functions. The methodology is that a function accepts the first parameter and ultimately returns a partial function which in turn processes the next parameter. This function chain should be freely definable [4]
+
+[source, GO]
+include::examples/currying_go.go[]
+
+*Figure 6: Currying in GO*
+
+[source, JavaScript]
+include::examples/currying_JS.js[]
+
+*Figure 7: Currying in JavaScript*
+
+Since currying is essentially based on higher order functions, both languages are fully able to meet the requirements here, as in Section 3.2 showen. 
+
+=== 3.4	Immutability
+The concept of immutability consists in no longer changing a created object. If an object is required that has a new attribute or value while it contains original values, a new instance must be created [5]. 
+
+[source, GO]
+include::examples/immutable_struct_go.go[]
+
+*Figure 8 Immutable own struct GO [6]*
+
+[source, JavaScript]
+include::examples/spread_operator_js.js[]
+
+*Figure 9 Spread Operator JavaScript*
+
+[source, JavaScript]
+include::examples/immutable_object_js.js[]
+
+*Figure 10 Immutable object assign JavaScript*
+
+GO does not provide an option for creating immutable structs, so when setting up the required structs, great importance should be attached to not transferring fields to the outside but enabling this purely via methods. Furthermore, pointers should not be used in GO, instead copies of the values that are passed to methods by the native GO functionality should be used for further processing. It is also important to design methods of the struct in such a way that not the struct itself is changed but a new offshoot is created [6]. Figure 8 which is based on the example of Linck [6], shows the use of an immutable struct that returns another object with new values when struct changes occur.
+
+This contrasts with JavaScript, in which primitive attributes such as strings are basically immutable. The use of the "const" keyword also helps to maintain the immutability of the variables, since a "const" variable cannot be changed after its definition. However, the properties of an object was declared with a "const" keyword can still be changed. This problem is solved in JavaScript by the assign method of the "Object" class. This method enables an object and its properties to be copied. Additional properties can also be added here during the creation process, as can be seen in figure 10. Another feature of JavaScript is the spread operator. This enables the properties of an object to be copied into a new one, as shown in figure 9. It is also possible to add new properties to the target object during the process [5].
+
+=== 3.5	Typings
+Static typings in a programming language set the requirements that every variable and all structures should be precisely defined. It takes more effort for a developer, but results in cleaner, more understandable, and more error-free code. In static typings, each method must specify the exact definition of the arguments and the return type. This requirement increases the testability as well as the understanding of the code [10]. Both are valuable properties of a functionally written application, as the emphasis on immutability and pure functions shows.
+
+JavaScript is designed to allow dynamic types. This means, in the context of dynamic types, that no explicit assignment of types is required when creating a variable. Although this methodology enables fast programming and reduces the amount of code required, it can quickly lead to bugs and malfunctions [7][8][9]. Nevertheless, JavaScript offers the possibility to use static typings. To support this, there are many tools to check the established rules during development [10]. But since JavaScript was not designed for static typings it cannot be evaluated within the comparison.
+
+Go is a programming language that mainly supports static typings. There are few dynamic aspects, but the functionality is significantly less than in JavaScript [11].
+
+As a result, JavaScript offers significantly more freedom in terms of code design. The only question that arises is whether a functional programmed application with dynamic typings should be developed. Heddings shows that the decision is fundamentally subjective in nature. It is not possible to make a clear statement about the suitability of the typings for functional programming, since dynamic typings, for example, offer the possibility of representing more complex issues with significantly less code [11].
+
+== 4	Discussion
+In the comparison, which was based on the basic principles of functional programming, it became clear that the existing differences between the two programming languages GO and JavaScript did not show a high deviation. 
+
+In the area of pure functions, both languages showed a clear implementation potential. Both objects of comparison have functionality for changing global variables, which should be avoided.  In GO these are pointers that allow a direct reference to a global value and in JavaScript these are general global variables with the keyword “var”. The essential structures of functional programming such as first call and higher order functions, as well as currying, do not exhibit implementation problems in either programming language. GO and JavaScript can both fulfill the requirements set up here with high probability without problems. However, the requirement of immutability shows significant implementation differences as well as missing out of the box functionalities in both programming languages. In principle, it is possible to fulfill the targeted requirements in both languages, but this can only be achieved with the help of development concepts that have to be implemented specifically, such as an immutable struct in GO or additional methods and techniques such as "Object.assign" or "Spread" Operator in JavaScript. Ultimately, the topic of typings illustrated the similarity of both languages. Much is left to the development concept, to what extent static typings are relevant for a functionally programmed application. Since JavaScript is not designed for static typing, the programming languages form a clear separation in the context. The design decision to be made here, depending on its weight, may determine the programming language. However, it must be remembered that dynamic typing is accompanied by flexible prototyping of an application, which may be advantageous at earlier stages of development.
+
+Finally, by a theoretical comparison of both programming languages no clear difference in the suitability for the functional development can be determined. Both languages bring advantages and disadvantages with themselves, whereby these turn out very slightly. Many at the selection of one of the two languages lies in the subjective decision making of the developer. To achieve a clear result, an application could be written in both languages in the future and then be benchmarked. This procedure could reveal further decision criteria, but it must be remembered that both languages have been created with fast processing in mind, so no strong deviation can be expected. Also, in order to generate further criteria the available libraries of the two languages for the suitability of the functional programming can be examined.
+
+== 5 References
+
+[1] Deepu K Sasidharan, 7 Easy functional programming techniques in Go, https://deepu.tech/functional-programming-in-go/
+
+[2] JavatPoint, JavaScript Global Variable, https://www.javatpoint.com/javascript-global-variable
+
+[3] Uday Hiwarale, Pointers in Go, https://medium.com/rungo/pointers-in-go-a789eafccd53
+
+[4] Eric Elliott, Curry and Function Composition, https://medium.com/javascript-scene/curry-and-function-composition-2c208d774983
+
+[5] Leonardo Maldonado, Immutability in JavaScript, https://www.telerik.com/blogs/immutability-in-javascript
+
+[6] Ricardo Linck, Immutability in Golang, https://levelup.gitconnected.com/immutability-in-golang-7a13199060bb
+
+[7] w3schools, JavaScript Data Types, https://www.w3schools.com/js/js_datatypes.asp
+
+[8] MDN, JavaScript data types and data structures, https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures
+
+
+[9] Luiz Sol, Why I use typed functional programming, http://luizsol.com/why-functional-programming/
+
+[10] ANTHONY HEDDINGS, What’s the Benefit of Statically Typed Programming Languages, https://www.cloudsavvyit.com/6626/whats-the-benefit-of-statically-typed-programming-languages/
+
+[11] Pan Chasinga, Go: or How I Came to Love Static Types Again, https://medium.com/code-zen/go-or-how-i-came-to-love-static-types-again-part-1-32120a7f599f
+
+[12]  Matt Banz, An introduction to functional programming in JavaScript, https://opensource.com/article/17/6/functional-javascript
