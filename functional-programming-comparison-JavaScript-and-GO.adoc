@@ -41,7 +41,7 @@ Approaches such as the avoidance of implicit states, recursion, lazy evaluation,
 Pure function should return values based on the arguments passed in. The global state of the application should not be affected by the function. In addition, there should be no dependencies between any of the functions or some function and an application state [1]. Functions that output information to the console, append values in addition to existing arguments, listen for events, or address another interface also violate the rules of pure functions.
 
 [source, GO]
-include::examples/pure_function_GO.go[]
+include::https://github.com/KotelczukB/concepts-of-programming-languages/blob/master/examples/pure_function_GO.go
 
 *Figure 1: Simple pure function in GO* 
 
