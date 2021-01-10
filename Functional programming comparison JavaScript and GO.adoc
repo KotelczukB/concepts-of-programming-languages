@@ -1,4 +1,4 @@
-image::images/logo-th-rosenheim-2019.png[TH Rosenheim, 100, 200]
+image::images/logo-th-rosenheim-2019.png[TH Rosenheim, 200, 150]
 
 ==== Rosenheim University of Applied Sciences
 
