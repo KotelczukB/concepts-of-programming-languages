@@ -1,7 +1,7 @@
 :toc: macro
 :figure-caption: Figure
 
-image::images/logo-th-rosenheim-2019.png[TH Rosenheim, 300, 500]
+image::images/logo-th-rosenheim-2019.png[TH Rosenheim, 200, 100]
 
 ==== Rosenheim University of Applied Sciences
 
