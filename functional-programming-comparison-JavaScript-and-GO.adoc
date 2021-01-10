@@ -128,7 +128,7 @@ Finally, by a theoretical comparison of both programming languages no clear diff
 :!numbered:
 <<<
 
-== 5 References
+== References
 
 [1] Deepu K Sasidharan, 7 Easy functional programming techniques in Go, https://deepu.tech/functional-programming-in-go/
 
