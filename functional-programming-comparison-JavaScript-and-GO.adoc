@@ -46,9 +46,8 @@ include::examples/pure_function_GO.go[]
 *Figure 1: Simple pure function in GO* 
 
 [source, JavaScript]
----
 include::examples/pure_function_JS.js[]
----
+
 *Figure 2: Simple pure function in JavaScript*
 
 [source, JavaScript]
