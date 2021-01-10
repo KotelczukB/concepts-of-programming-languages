@@ -146,10 +146,9 @@ Finally, by a theoretical comparison of both programming languages no clear diff
 
 [8] MDN, JavaScript data types and data structures, https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures
 
-
 [9] Luiz Sol, Why I use typed functional programming, http://luizsol.com/why-functional-programming/
 
-[10] ANTHONY HEDDINGS, What’s the Benefit of Statically Typed Programming Languages, https://www.cloudsavvyit.com/6626/whats-the-benefit-of-statically-typed-programming-languages/
+[10] Anthnny Heddings, What’s the Benefit of Statically Typed Programming Languages, https://www.cloudsavvyit.com/6626/whats-the-benefit-of-statically-typed-programming-languages/
 
 [11] Pan Chasinga, Go: or How I Came to Love Static Types Again, https://medium.com/code-zen/go-or-how-i-came-to-love-static-types-again-part-1-32120a7f599f
 
